@@ -5,6 +5,14 @@
 
   tasks:
 
-- name: Call Roles
+# - name: Call Roles
+#   hosts: servers
+#   ansible.builtin.shell: sudo reboot
+
+
+- name: Reboot servers
   hosts: servers
-  ansible.builtin.shell: sudo reboot
+  become: yes
+  tasks:
+    - name: Reboot the servers
+      ansible.builtin.shell: sudo reboot
