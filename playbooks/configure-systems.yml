@@ -7,8 +7,4 @@
 
 - name: Call Roles
   hosts: servers
-  roles:
-   #- hostname
-   #- firewalld
-   #- ntp-config
-   - motd
+  ansible.builtin.shell: sudo reboot
