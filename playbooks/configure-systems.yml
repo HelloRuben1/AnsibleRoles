@@ -11,7 +11,7 @@
 
 
 - name: Reboot servers
-  hosts: servers
+  hosts: pc.501.hellometer.openvpn.com
   become: yes
   tasks:
     - name: Reboot the servers
