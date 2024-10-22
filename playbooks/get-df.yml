@@ -14,8 +14,8 @@
   become: yes
   tasks:
     - name: Check disk space usage
-    ansible.builtin.shell: df -h / | grep -Eo '[0-9]+%' | head -1 | tr -d '%'
-    register: disk_usage
+      ansible.builtin.shell: df -h / | grep -Eo '[0-9]+%' | head -1 | tr -d '%'
+      register: disk_usage
     - name: Return disk space usage to the controlling machine
       ansible.builtin.debug:
         msg: "Disk space usage on {{ inventory_hostname }}: {{ disk_usage.stdout }}%"
