@@ -1,1 +1,21 @@
+- name: get DF metrics
+  hosts: pc.501.hellometer.openvpn.com
+  become: yes
 
+  tasks:
+
+# - name: Call Roles
+#   hosts: servers
+#   ansible.builtin.shell: sudo reboot
+
+
+- name: Get Metrics
+  hosts: pc.501.hellometer.openvpn.com
+  become: yes
+  tasks:
+    - name: Check disk space usage
+    ansible.builtin.shell: df -h / | grep -Eo '[0-9]+%' | head -1 | tr -d '%'
+    register: disk_usage
+    - name: Return disk space usage to the controlling machine
+      ansible.builtin.debug:
+        msg: "Disk space usage on {{ inventory_hostname }}: {{ disk_usage.stdout }}%"
